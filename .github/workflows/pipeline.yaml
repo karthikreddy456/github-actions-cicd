@@ -19,7 +19,15 @@ jobs:
         steps:
             - name: set environment variables
               run : |
+                if [ "${{ github.event.inputs.environment }}" == "dev" ]; then
                 echo "Environment: ${{ inputs.environment }}" >> "$GITHUB_ENV"
-            - name: use the environment variable
-              run: |
                 printf '%s\n' "$Environment"
+                elif [ "${{ github.event.inputs.environment }}" == "qa" ]; then
+                echo "Environment: ${{ inputs.environment }}" >> "$GITHUB_ENV"
+                printf '%s\n' "$Environment"
+                elif [ "${{ github.event.inputs.environment }}" == "prod" ]; then
+                echo "Environment: ${{ inputs.environment }}" >> "$GITHUB_ENV"
+                printf '%s\n' "$Environment"
+                fi
+                
+        
