@@ -6,7 +6,7 @@ on:
             environment:
                 description: 'Executed based on env selected'
                 required: true
-                default: dev
+                default: qa
                 type: choice
                 options:
                     - dev
@@ -21,13 +21,16 @@ jobs:
               run : |
                 if [ "${{ github.event.inputs.environment }}" == "dev" ]; then
                   echo "Environment=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-                  echo "The environment variable Environment is: $Environment"
+                  
                 elif [ "${{ github.event.inputs.environment }}" == "qa" ]; then
                   echo "Environment=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-                  echo "The environment variable Environment is: $Environment"
+                  
                 elif [ "${{ github.event.inputs.environment }}" == "prod" ]; then
                   echo "Environment=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-                  echo "The environment variable Environment is: $Environment"
                 fi
+            - name: print the environmental variables
+              run: |
+               echo "The environment variable Environment is: $Environment"
+
 
         
